@@ -1,0 +1,2 @@
+# GetSetGo
+decentralized quizz platform

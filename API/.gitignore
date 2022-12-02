@@ -1,0 +1,4 @@
+getsetgo_api/__pycache__/
+config/__pycache__/
+getsetgo_api/migrations
+db.sqlite3
