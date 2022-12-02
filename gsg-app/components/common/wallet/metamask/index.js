@@ -60,11 +60,8 @@ export default function Connect({ isAdmin, walletState, walletDispatch }) {
                 }
             });
             const  final= await response.json()
-            alert(final)
-            console.log(final)
 
-            
-
+            walletDispatch({ type: WALLET_ACTIONS.SET_WALLET_ID, payload: final.id })
 
         } catch (error) {
             console.log(error)

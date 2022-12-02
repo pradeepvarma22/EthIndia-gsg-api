@@ -1,9 +1,7 @@
-import { useEffect } from "react"
-import Link from 'next/link'
 import detectEthereumProvider from '@metamask/detect-provider';
 import { ethers } from "ethers";
-
-
+import Link from 'next/link'
+import { useEffect } from "react"
 
 export default function Dashboard({ adminState, adminDispatch, walletState, walletDispatch }) {
 
@@ -19,16 +17,14 @@ export default function Dashboard({ adminState, adminDispatch, walletState, wall
     // async function dummy(){
     //     await  onPageLoad()
     // }
-    
+
     useEffect(() => {
         // on page load load admin previous quizz
 
     }, [])
 
-    const data = {
-        a: 100
-    }
 
+    
 
     return (
         <div>
@@ -36,11 +32,10 @@ export default function Dashboard({ adminState, adminDispatch, walletState, wall
             {/* List of previous quizz */}
             <Link
                 href={{
-                    pathname: '/admin/addquizz',
-                    query: data
+                    pathname: `/admin/addquizz/${walletState.walletId}`,
                 }}
             >
-               New Quizz
+                New Quizz
             </Link>
 
 

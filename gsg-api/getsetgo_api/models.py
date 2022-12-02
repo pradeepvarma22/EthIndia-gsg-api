@@ -10,7 +10,6 @@ class User(models.Model):
     def __str__(self):
         return self.walletAddress
 
-
 class Quizz(models.Model):
     quiz_name = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -20,6 +19,7 @@ class Quizz(models.Model):
 
 
 class Question(models.Model):
+    qid = models.IntegerField(null=True, default=0)
     question_text = models.CharField(max_length=150)
     quizz = models.ForeignKey(Quizz, on_delete=models.CASCADE)
 
@@ -28,6 +28,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    aid = models.IntegerField(null=True, default=0)
     choice = models.CharField(max_length=150)
     is_correct = models.BooleanField(default=False, blank=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

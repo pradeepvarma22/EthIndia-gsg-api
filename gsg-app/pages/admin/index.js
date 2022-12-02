@@ -1,8 +1,8 @@
 import { useEffect, useReducer } from "react"
-import Dashboard from "../../components/Admin/Dashboard";
 
+import Dashboard from "../../components/Admin/Dashboard";
 import { Connect, Header } from "../../components/common"
-import { WALLET_INITIAL_STATE, walletReducer, adminReducer, ADMIN_INITIAL_STATE } from "../../reducers"
+import { ADMIN_INITIAL_STATE, adminReducer, WALLET_INITIAL_STATE, walletReducer } from "../../reducers"
 
 export default function Admin() {
 
@@ -14,10 +14,16 @@ export default function Admin() {
 
     useEffect(() => {
 
+
+
         if (walletState.isWalletConnected) {
+
 
             localStorage.setItem("gsg_account_walletaddress", walletState.walletAddress)
             localStorage.setItem("gsg_account_isAdmin", walletState.isAdmin)
+
+
+
 
         }
 
@@ -28,7 +34,7 @@ export default function Admin() {
     return (
         <div>
             <Header title={"Admin"} />
-            
+
             {
                 walletState.isWalletConnected ? (
                     <div>
