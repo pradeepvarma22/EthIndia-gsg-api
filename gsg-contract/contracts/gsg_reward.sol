@@ -1,8 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract GSGReward is Ownable {
+contract GSGReward is Ownable, ERC721URIStorage {
+    uint256 tokenCounter;
+
     event Stake(
         address indexed _admin,
         uint256 _quizzid,
@@ -15,6 +19,10 @@ contract GSGReward is Ownable {
         string indexed ipfshash
     );
 
+    constructor() ERC721("get set goo...", "gsg") {
+        tokenCounter = 0;
+    }
+
     // admin address to quizzId
     mapping(address => uint256) public _quizzId;
     mapping(uint256 => address) public _quizzAdmin;
@@ -24,6 +32,8 @@ contract GSGReward is Ownable {
     mapping(uint256 => string) public _winners;
     // quizzid, _quizzAdmin, amount
     mapping(uint256 => mapping(address => uint256)) public _stakeamount;
+
+    // TODO NFT History
 
     // quizzid to boolean is done or not
     mapping(uint256 => bool) public _isdone;
@@ -51,6 +61,17 @@ contract GSGReward is Ownable {
         _winners[quizzId] = winnersHash;
         _isdone[quizzId] = true;
         emit Distribute(quizzId, winnersList, winnersHash);
+    }
+
+    function mintNFT(uint256 quizzid, string memory tokenURI) public onlyOwner {
+        safeMint(msg.sender, tokenURI);
+    }
+
+    function safeMint(address to, string memory tokenURI) internal {
+        tokenCounter += 1;
+        uint256 tokenId = tokenCounter;
+        _safeMint(to, tokenCounter);
+        _setTokenURI(tokenId, tokenURI);
     }
 
     function sendViaTransfer(address payable _to, uint256 _amount) internal {
