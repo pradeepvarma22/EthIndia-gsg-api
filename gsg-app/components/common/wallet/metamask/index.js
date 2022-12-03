@@ -9,11 +9,11 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
     const web3ModalRef = useRef();
 
 
-    useEffect(()=>{
-        if(walletState.isWalletConnected == false && onLoadClick){
+    useEffect(() => {
+        if (walletState.isWalletConnected == false && onLoadClick) {
             connect()
         }
-    },[walletState.isWalletConnected])
+    }, [walletState.isWalletConnected])
 
 
 
@@ -54,7 +54,7 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
             } else {
                 walletDispatch({ type: WALLET_ACTIONS.SET_ADMIN, payload: false })
             }
-            
+
             const response = await fetch("http://127.0.0.1:8000/add_user/", {
                 method: 'POST',
                 body: JSON.stringify({
@@ -65,7 +65,7 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
                     'Content-Type': 'application/json'
                 }
             });
-            const  final= await response.json()
+            const final = await response.json()
 
             walletDispatch({ type: WALLET_ACTIONS.SET_WALLET_ID, payload: final.id })
 

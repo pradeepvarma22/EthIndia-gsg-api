@@ -20,7 +20,7 @@ def api_overview(request):
 def add_questions(request, pkk):
     obj = {'id': -1}
     User_id = ""
-    error= False
+    error = False
     try:
         myData = request.data
         length = myData['questions'].get('length')
@@ -39,7 +39,7 @@ def add_questions(request, pkk):
                 Answer.objects.create(
                     aid=j[0], choice=j[1], is_correct=j[2], question=t_obj)
     except:
-        error= True
+        error = True
 
     return Response({'error': error, 'User_id': userId, 'quizzId': obj.id})
 
@@ -64,3 +64,18 @@ def add_user(request):
         return Response(serializers.data)
 
     return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def get_quizz_user_data(request):
+    myData = request.data
+    print(myData)
+    error = False
+    try:
+        user = User.objects.get(id=myData.get('userId'))
+        quizz = Quizz.objects.get(id=myData.get('quizzId'))
+    except User.DoesNotExist:
+        print('Exception At get_quizz_user_data')
+        error = True
+
+    return Response({'walletAddress': str(user.walletAddress), 'quizz': str(quizz.quiz_name), 'error': error})

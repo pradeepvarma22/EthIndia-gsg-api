@@ -1,21 +1,52 @@
 import { useRouter } from "next/router"
 import { useEffect, useReducer } from "react"
+
 import Connect from "../../../components/common/wallet/metamask"
-import { adminReducer, ADMIN_INITIAL_STATE, walletReducer, WALLET_INITIAL_STATE } from "../../../reducers";
+import { ADMIN_INITIAL_STATE, adminReducer, WALLET_INITIAL_STATE, walletReducer } from "../../../reducers";
 
 export default function Details() {
     const router = useRouter()
     const [walletState, walletDispatch] = useReducer(walletReducer, WALLET_INITIAL_STATE);
     const [adminState, adminDispatch] = useReducer(adminReducer, ADMIN_INITIAL_STATE);
     const isAdmin = true;
-    
-    
 
-    console.log(router.query.id)
-    console.log(router.query.qid)
+    let quizzId = router.query.qid
+    let userId = router.query.id
+
+    async function getBaseData() {
+
+        if (quizzId && userId) {
+
+            const response = await fetch("http://127.0.0.1:8000/get_quizz_user_data/", {
+                method: 'POST',
+                body: JSON.stringify({
+                    quizzId: quizzId,
+                    userId: userId
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('PRADEEP');
+            const final = await response.json()
+            console.log(final)
+
+        }
 
 
-    
+    }
+
+
+    useEffect(() => {
+        quizzId = router.query.qid
+        userId = router.query.id
+
+        getBaseData();
+    }, [])
+
+
+
+
     return (
         <div>
             <div>
@@ -32,7 +63,7 @@ export default function Details() {
                                     isAdmin={isAdmin}
                                     walletState={walletState}
                                     walletDispatch={walletDispatch}
-                                    onLoadClick = {true}
+                                    onLoadClick={true}
                                 />
                             </div>
                         )
