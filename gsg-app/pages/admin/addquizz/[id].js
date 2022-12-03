@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import { useRouter } from "next/router"
 import { useState } from "react"
-import AddQuestion from "../../../components/Admin/Dashboard/question/AddQuestion"
-import Link from 'next/link'
 
-export default function createquizz() {
+import AddQuestion from "../../../components/Admin/Dashboard/question/AddQuestion"
+
+export default function Createquizz() {
 
     const [questions, setQuestions] = useState([])   // last lo add cheyy
     const [presentQuestionCounter, setPresentQuestionCounter] = useState(1)
@@ -17,7 +18,7 @@ export default function createquizz() {
 
 
     const router = useRouter()
-    console.log(router.query)
+
     const presentCreateUserId = router.query.id
 
     async function saveData(){
@@ -30,12 +31,12 @@ export default function createquizz() {
         
         
         for(let i = 0; i < questions.length;i++){
-            console.log(questions[i])
-            temp_obj[i] = questions[i]
-            console.log('xnxx')
-        }
 
-        const response = await fetch(`http://127.0.0.1:8000/add_questions/${presentCreateUserId}/`, {
+            temp_obj[i] = questions[i]
+        }
+        const URI = `${process.env.NEXT_PUBLIC_REST_API}/add_questions/${presentCreateUserId}/` 
+
+        const response = await fetch(URI, {
             method: 'POST',
             body: JSON.stringify({
                 questions: temp_obj,
@@ -46,7 +47,7 @@ export default function createquizz() {
         });
         const  final= await response.json()
         alert(final)
-        console.log(final)
+
         if(final.error){
             alert('Internal Server Error')
         }else{

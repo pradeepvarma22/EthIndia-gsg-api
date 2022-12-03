@@ -16,8 +16,9 @@ export default function Details() {
     async function getBaseData() {
 
         if (quizzId && userId) {
+            const URI = `${process.env.NEXT_PUBLIC_REST_API}/get_quizz_user_data/` 
 
-            const response = await fetch("http://127.0.0.1:8000/get_quizz_user_data/", {
+            const response = await fetch(URI, {
                 method: 'POST',
                 body: JSON.stringify({
                     quizzId: quizzId,
@@ -27,15 +28,11 @@ export default function Details() {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log('PRADEEP');
+
             const final = await response.json()
-            console.log(final)
 
         }
-
-
     }
-
 
     useEffect(() => {
         quizzId = router.query.qid

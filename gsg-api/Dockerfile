@@ -1,22 +1,26 @@
-FROM python:3.10-slim
-
-ENV PYTHONDONTWRITEBYTECODE 1
+FROM python:3.10
 
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir /code
+ENV PYTHONDONTWRITEBYTECODE 1
 
 WORKDIR /code
 
-RUN pip install --upgrade pip
-
-COPY requirements.txt /code/
+COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
-COPY . /code/
+
+COPY . .
+
+
+
+RUN mkdir /test2
+
+COPY . /test2/
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "test_api.py"]
+
 

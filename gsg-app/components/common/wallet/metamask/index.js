@@ -55,7 +55,8 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
                 walletDispatch({ type: WALLET_ACTIONS.SET_ADMIN, payload: false })
             }
 
-            const response = await fetch("http://127.0.0.1:8000/add_user/", {
+            const URI = `${process.env.NEXT_PUBLIC_REST_API}/add_user/` 
+            const response = await fetch(URI, {
                 method: 'POST',
                 body: JSON.stringify({
                     walletAddress: hexAddr,
@@ -66,6 +67,7 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
                 }
             });
             const final = await response.json()
+            console.log(final)
 
             walletDispatch({ type: WALLET_ACTIONS.SET_WALLET_ID, payload: final.id })
 

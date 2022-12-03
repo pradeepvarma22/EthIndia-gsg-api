@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-
 export default function AddQuestion({ questions, setQuestions,
     presentQuestionCounter, presentQuestion, presentQuestionOptions, setPresentQuestionCounter, setPresentQuestion, setPresentQuestionOptions }) {
 
@@ -11,8 +10,8 @@ export default function AddQuestion({ questions, setQuestions,
 
 
 
-    console.log(questions)
 
+    
     
 
 
