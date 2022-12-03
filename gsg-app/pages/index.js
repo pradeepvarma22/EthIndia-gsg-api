@@ -38,6 +38,7 @@ export default function Home() {
               isAdmin={isAdmin}
               walletState={walletState}
               walletDispatch={walletDispatch}
+              onLoadClick = {false}
             />
             </div>
           )

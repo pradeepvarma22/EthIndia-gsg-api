@@ -1,13 +1,19 @@
 import { providers, utils } from 'ethers';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import Web3Modal from 'web3modal';
 
 import { WALLET_ACTIONS } from '../../../../reducers';
 
-export default function Connect({ isAdmin, walletState, walletDispatch }) {
+export default function Connect({ isAdmin, walletState, walletDispatch, onLoadClick }) {
 
     const web3ModalRef = useRef();
 
+
+    useEffect(()=>{
+        if(walletState.isWalletConnected == false && onLoadClick){
+            connect()
+        }
+    },[walletState.isWalletConnected])
 
 
 

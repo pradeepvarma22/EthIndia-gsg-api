@@ -1,6 +1,7 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
 import AddQuestion from "../../../components/Admin/Dashboard/question/AddQuestion"
+import Link from 'next/link'
 
 export default function createquizz() {
 
@@ -46,6 +47,14 @@ export default function createquizz() {
         const  final= await response.json()
         alert(final)
         console.log(final)
+        if(final.error){
+            alert('Internal Server Error')
+        }else{
+            router.push({
+                pathname: `/admin/deatils/`,
+                query: { id: final.User_id, qid: final.quizzId }            
+            })
+        }
     
     }
 
@@ -75,7 +84,7 @@ export default function createquizz() {
             <br/>
             <br/>
             <div>
-                <button onClick={saveData}>Save</button>
+                <button onClick={saveData}>Next</button>
             </div>
 
 

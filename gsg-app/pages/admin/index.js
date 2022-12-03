@@ -53,6 +53,7 @@ export default function Admin() {
                                 isAdmin={isAdmin}
                                 walletState={walletState}
                                 walletDispatch={walletDispatch}
+                                onLoadClick={false}
                             />
                         </div>
                     )
