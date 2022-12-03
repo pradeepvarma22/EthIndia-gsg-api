@@ -77,7 +77,7 @@ contract GSGReward is Ownable, ERC721URIStorage {
     function sendViaTransfer(address payable _to, uint256 _amount) internal {
         _to.transfer(_amount);
     }
-
+    
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
