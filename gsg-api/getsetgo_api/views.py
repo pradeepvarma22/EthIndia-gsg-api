@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework import status
+import requests
 
 
 @api_view(['GET'])
@@ -77,5 +78,18 @@ def get_quizz_user_data(request):
     except User.DoesNotExist:
         print('Exception At get_quizz_user_data')
         error = True
+     
+    url = "https://api.nftport.xyz/v0/mints/customizable/batch"
+
+    headers = {
+        'Content-Type': "application/json",
+        'Authorization': "aa209504-300c-49cd-a961-75dd58a7d806"
+    }
+    print(response.text)
+    response = requests.post(url, headers=headers)
 
     return Response({'walletAddress': str(user.walletAddress), 'quizz': str(quizz.quiz_name), 'error': error})
+
+
+
+
