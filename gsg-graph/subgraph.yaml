@@ -1,0 +1,27 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: GSGReward
+    network: mumbai
+    source:
+      address: "0x153Af0E717Ec91A894Ac03E161Ed5bFD7e84fE40"
+      abi: GSGReward
+      startBlock: 15704343
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - UserAccount
+        - Transaction
+      abis:
+        - name: Stake
+          file: ./abis/stake.json
+      eventHandlers:
+        - event: Stake(indexed address,uint256,uint256)
+          handler: handleStake
+        - event: Distribute(uint256,address [], string indexed)
+          handler: handleDistribute
+      file: ./src/stake.ts

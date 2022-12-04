@@ -1,0 +1,30 @@
+enum Network {
+  MAINNET # Ethereum Mainnet
+  MATIC  #Polygon 
+}
+
+enum TransactionType{
+  TRANSFER
+  APPROVAL
+}
+
+enum TokenStandardType {
+  ERC721
+  ERC20
+}
+
+type UserAccount @entity {
+  id: ID!
+  address: String!
+  transaction: [Transaction!]!
+}
+
+type Transaction @entity(immutable: true) {
+  id: ID!
+  from: String!
+  to: String!
+  value: BigInt!
+  tokenType: TokenStandardType!
+  transactionType: TransactionType!
+  network: Network!
+}

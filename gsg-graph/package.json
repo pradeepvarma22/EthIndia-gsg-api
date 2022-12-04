@@ -1,0 +1,21 @@
+{
+  "name": "usdt-subgraph",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ usdt-subgraph",
+    "create-local": "graph create --node http://localhost:8020/ usdt-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ usdt-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 usdt-subgraph",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.34.0",
+    "@graphprotocol/graph-ts": "0.28.0"
+  },
+  "devDependencies": {
+    "@graphprotocol/client-cli": "^2.2.12",
+    "matchstick-as": "0.5.0"
+  }
+}
