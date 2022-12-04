@@ -14,7 +14,7 @@ export default function Home() {
   const [quizzId, setQuizzId] = useState(0)
   const [amount, setAmount] = useState("0")
   const [winnersCount, setWinnersCount] = useState(0)
-  const [stakeDone, setStakeDone] = useState(true)
+  const [stakeDone, setStakeDone] = useState(false)
   const [winners, setWinners] = useState([])
   const [temp, setTemp] = useState("")
 
