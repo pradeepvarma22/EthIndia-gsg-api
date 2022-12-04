@@ -27,7 +27,7 @@ export default function Connect({ isAdmin, walletState, walletDispatch, onLoadCl
                 providerOptions: {},
                 disabledInjectedProvider: false
             });
-
+            
 
             let provider = await web3ModalRef.current.connect();
             let web3Provider = new providers.Web3Provider(provider);

@@ -79,3 +79,11 @@ def get_quizz_user_data(request):
         error = True
 
     return Response({'walletAddress': str(user.walletAddress), 'quizz': str(quizz.quiz_name), 'error': error})
+
+@api_view(['POST'])
+def stake_done(request, pkk):
+    myData = request.data
+
+    Quizz.objects.filter(id=pkk).update(isStakeDone=True)
+
+    return Response({'quizzId': str(pkk)})

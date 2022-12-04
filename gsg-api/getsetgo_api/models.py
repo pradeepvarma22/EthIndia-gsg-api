@@ -13,6 +13,7 @@ class User(models.Model):
 class Quizz(models.Model):
     quiz_name = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    isStakeDone = models.BooleanField(default=False)
 
     def __str__(self):
         return self.quiz_name
