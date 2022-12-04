@@ -1,9 +1,9 @@
 # GSG_CONTRACT
 
 
-# Deployed to
+## Deployed to
 
-## FVM
+### FVM
 ```
 yarn hardhat deploy --network wallaby
 yarn run v1.22.19
@@ -15,7 +15,7 @@ deploying "GSGReward" (tx: 0x68319bec265a78b835d37eeeb388db760382bc8b5139ac49a1c
 <a href="https://explorer.glif.io/tx/0x68319bec265a78b835d37eeeb388db760382bc8b5139ac49a1cba0ec8656b748/?network=wallabynet">https://explorer.glif.io/tx/0x68319bec265a78b835d37eeeb388db760382bc8b5139ac49a1cba0ec8656b748/?network=wallabynet</a>
 
 
-## Mumbai
+### Mumbai
 ```
 yarn hardhat run deploy/mumbai.js --network mumbai
 yarn run v1.22.19
